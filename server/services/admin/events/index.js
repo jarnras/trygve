@@ -1,3 +1,4 @@
+const { authenticate } = require('@feathersjs/authentication');
 const service = require('feathers-sequelize');
 const hooks = require('./hooks.js');
 
@@ -14,9 +15,8 @@ module.exports = function () {
   // Get our initialize service to that we can bind hooks
   const eventService = app.service('/api/admin/events');
 
-  // Set up our before hooks
-  eventService.before(hooks.before);
+  // Set up our hooks
+  eventService.hooks({ before: authenticate('jwt') });
+  eventService.hooks({ before: hooks.before, after: hooks.after });
 
-  // Set up our after hooks
-  eventService.after(hooks.after);
 };

@@ -1,5 +1,5 @@
 const debug = require('debug')('app:script');
-const feathers = require('feathers');
+const feathers = require('@feathersjs/feathers');
 const _ = require('lodash');
 const moment = require('moment');
 const faker = require('faker');
@@ -69,7 +69,7 @@ for (let i = 0; i < quotas.length; i += 1) {
   delete quotas[i].going;
 }
 
-const app = feathers();
+const app = express(feathers());
 app.configure(models);
 
 const seq = app.get('sequelize');

@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 module.exports = function () {
   const app = this;

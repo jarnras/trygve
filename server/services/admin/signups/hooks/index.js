@@ -1,16 +1,16 @@
-const authentication = require('feathers-authentication');
+const authentication = require('@feathersjs/authentication');
 const deleteSignup = require('./deleteSignup.js');
 const sendEmailToQueue = require('../../../signup/hooks/sendEmailToQueue');
 const hooks = require('feathers-hooks-common');
 
 exports.before = {
-    all: [authentication.hooks.authenticate('jwt')],
-    find: [hooks.disable('external')],
-    get: [hooks.disable('external')],
-    create: [hooks.disable('external')],
-    update: [hooks.disable('external')],
-    patch: [hooks.disable('external')],
-    remove: [deleteSignup(), sendEmailToQueue()],
+  all: [authentication.hooks.authenticate('jwt')],
+  find: [hooks.disallow('external')],
+  get: [hooks.disallow('external')],
+  create: [hooks.disallow('external')],
+  update: [hooks.disallow('external')],
+  patch: [hooks.disallow('external')],
+  remove: [deleteSignup(), sendEmailToQueue()],
 
 };
 
