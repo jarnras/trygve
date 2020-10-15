@@ -9,12 +9,12 @@ const user = require('./user');
 
 const config = require('../../config/ilmomasiina.config.js'); // eslint-disable-line
 
-module.exports = function() {
+module.exports = function () {
   const app = this;
 
   let sequelize;
-  if (process.env.CLEARDB_DATABASE_URL) {
-    sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL, {
+  if (process.env.JAWSDB_URL) {
+    sequelize = new Sequelize(process.env.JAWSDB_URL, {
       logging: false,
     });
   } else {
@@ -37,7 +37,7 @@ module.exports = function() {
         const cfg = sequelize.connectionManager.config;
         console.log(`Sequelize: Connected to ${cfg.host} as ${cfg.username}.`);
       })
-      .catch(err => {
+      .catch((err) => {
         const cfg = sequelize.connectionManager.config;
         console.log(
           `Sequelize: Error connecting ${cfg.host} as ${cfg.user}: ${err}`,
