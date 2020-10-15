@@ -1,9 +1,7 @@
 const express = require('@feathersjs/express');
 const debug = require('debug')('app:server');
 const compress = require('compression');
-const feathers = require('feathers');
-const hooks = require('feathers-hooks');
-const rest = require('feathers-rest');
+const feathers = require('@feathersjs/feathers');
 const bodyParser = require('body-parser');
 const webpack = require('webpack');
 const cron = require('node-cron');
@@ -15,19 +13,24 @@ const services = require('./services');
 const deleteUnconfirmedEntries = require('./cron-delete-unconfirmed-entries');
 const anonymizeOldSignups = require('./cron-anonymize-old-signups');
 
-const app = feathers();
+const app = express(feathers());
 
 app
+  .configure(express.rest())
   .use(compress())
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
-  .configure(hooks())
-  .configure(rest())
   .configure(models)
   .configure(services);
 
 // Create tables if not exist
-app.get('sequelize').sync();
+app.get('sequelize').sync({ alter: { drop: false } });
+
+app.hooks({
+  error(context) {
+    console.error(`Error in '${context.path}' service method '${context.method}'`, context.error.stack);
+  }
+});
 
 /*
  * cron script that removes signups that have not been confirmed within 30 minutes

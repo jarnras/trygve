@@ -2,31 +2,30 @@ const hooks = require('feathers-hooks-common');
 const createPassword = require('./hooks/createPassword');
 const validateRegistration = require('./hooks/validateRegistration');
 const sendEmail = require('./hooks/sendEmail');
-const { hashPassword } = require('feathers-authentication-local').hooks;
+const { hashPassword, protect } = require('@feathersjs/authentication-local').hooks;
 const config = require('../../../config/ilmomasiina.config.js');
-const authentication = require('feathers-authentication');
+const { authenticate } = require('@feathersjs/authentication');
 
 let createHook;
 
 if (config.adminRegistrationAllowed) {
-  createHook = [validateRegistration(), createPassword(), hashPassword()]
-}
-else {
-  createHook = [authentication.hooks.authenticate('jwt'), createPassword(), hashPassword()]
+  createHook = [validateRegistration(), createPassword(), hashPassword('password')];
+} else {
+  createHook = [authenticate('jwt'), createPassword(), hashPassword('password')];
 }
 
 exports.before = {
   all: [],
-  find: [authentication.hooks.authenticate('jwt')],
-  get: [hooks.disable('external')],
+  find: [authenticate('jwt')],
+  get: [authenticate('jwt')],
   create: createHook,
-  update: [hooks.disable('external'), hashPassword()],
-  patch: [hooks.disable('external'), hashPassword()],
-  remove: [authentication.hooks.authenticate('jwt')],
+  update: [hooks.disallow('external'), hashPassword('password')],
+  patch: [hooks.disallow('external'), hashPassword('password')],
+  remove: [authenticate('jwt')],
 };
 
 exports.after = {
-  all: [hooks.remove('password')],
+  all: [protect('password')],
   find: [],
   get: [],
   create: [sendEmail()],

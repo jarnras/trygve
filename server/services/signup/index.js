@@ -15,8 +15,5 @@ module.exports = function () {
   const signupService = app.service('/api/signups');
 
   // Set up our before hooks
-  signupService.before(hooks.before);
-
-  // Set up our after hooks
-  signupService.after(hooks.after);
+  signupService.hooks(hooks);
 };
