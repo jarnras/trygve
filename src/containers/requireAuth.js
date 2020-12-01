@@ -12,13 +12,12 @@ function requireAuth(WrappedComponent) {
     };
 
     componentDidMount() {
-      let { accessTokenExpires } = this.props
-      console.log(accessTokenExpires)
+      let { accessTokenExpires } = this.props;
       if (!accessTokenExpires) {
         this.props.redirectToLogin();
       }
-      if (typeof (accessTokenExpires) === "string") {
-        accessTokenExpires = new Date(accessTokenExpires)
+      if (typeof (accessTokenExpires) === 'string') {
+        accessTokenExpires = new Date(accessTokenExpires);
       }
       if (accessTokenExpires < new Date()) {
         this.props.redirectToLogin();
@@ -36,7 +35,7 @@ function requireAuth(WrappedComponent) {
 
   const mapStateToProps = state => ({
     accessToken: state.admin.accessToken,
-    accessTokenExpires: state.admin.accessTokenExpires
+    accessTokenExpires: state.admin.accessTokenExpires,
   });
 
   const mapDispatchToProps = {

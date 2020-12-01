@@ -60,7 +60,7 @@ class QuestionsTab extends React.Component {
   }
 
   updateOrder(args) {
-    let newQuestions = this.props.event.questions;
+    const newQuestions = this.props.event.questions;
 
     const elementToMove = newQuestions[args.oldIndex];
     newQuestions.splice(args.oldIndex, 1);
@@ -73,12 +73,11 @@ class QuestionsTab extends React.Component {
     const questions = this.props.event.questions;
     const newQuestions = _.map(questions, (question) => {
       if (question.id === itemId) {
-        if (value === "select" || value === "checkbox") {
+        if (value === 'select' || value === 'checkbox') {
           if (!question.options) {
-            question.options = [""]
-          }
-          else {
-            question.options = null
+            question.options = [''];
+          } else {
+            question.options = null;
           }
         }
 
@@ -97,9 +96,8 @@ class QuestionsTab extends React.Component {
   updateQuestionOption(itemId, index, value) {
     const questions = this.props.event.questions;
     const newQuestions = _.map(questions, (question) => {
-
       if (question.id === itemId) {
-        question.options[index] = value
+        question.options[index] = value;
       }
 
       return question;
@@ -111,11 +109,10 @@ class QuestionsTab extends React.Component {
   addOption(questionId) {
     const questions = this.props.event.questions;
     const newQuestions = _.map(questions, (question) => {
-
       if (question.id === questionId) {
-        question.options.push("");
+        question.options.push('');
       }
-      return question
+      return question;
     });
 
     this.props.onDataChange('questions', newQuestions);
@@ -133,22 +130,21 @@ class QuestionsTab extends React.Component {
     this.props.onDataChange('questions', newQuestions);
   }
   renderQuestionOptions(question) {
-    if (!question.options) { return null }
+    if (!question.options) { return null; }
     return (
       <div>
         {_.map(question.options, (option, index) => (
           <Input
             name={`question-${question.id}-question-option-${index}`}
             value={option}
-            label={"Vastausvaihtoehto "}
+            label={'Vastausvaihtoehto '}
             type="text"
             required
             onChange={(field, value) => this.updateQuestionOption(question.id, index, value)}
           />
         ))}
         <a onClick={() => this.addOption(question.id)}>Lisää vastausvaihtoehto</a>
-      </div>)
-
+      </div>);
   }
   renderQuestions() {
     const q = _.map(this.props.event.questions, item => (

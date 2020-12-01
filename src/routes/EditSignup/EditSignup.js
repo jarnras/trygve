@@ -68,7 +68,6 @@ class EditSignup extends React.Component {
         autoClose: 5000,
       });
     }
-
   }
 
   render() {

@@ -48,7 +48,7 @@ class QuotasTab extends React.Component {
   }
 
   updateOrder(args) {
-    let newQuotas = this.props.event.quota;
+    const newQuotas = this.props.event.quota;
 
     const elementToMove = newQuotas[args.oldIndex];
     newQuotas.splice(args.oldIndex, 1);
@@ -62,19 +62,17 @@ class QuotasTab extends React.Component {
 
     const newQuotas = _.map(quotas, (quota) => {
       if (quota.id === itemId) {
-        if (field === "size" && value === '') {
+        if (field === 'size' && value === '') {
           return {
             ...quota,
             [field]: null,
           };
         }
-        else {
-          return {
-            ...quota,
-            [field]: value,
-          };
-        }
 
+        return {
+          ...quota,
+          [field]: value,
+        };
       }
 
       return quota;

@@ -33,8 +33,8 @@ export default (initialState = {}) => {
   const persistConfig = {
     key: DEV ? 'ilmomasiina-dev' : 'ilmomasiina',
     storage,
-    blacklist: ['location', 'routing']
-  }
+    blacklist: ['location', 'routing'],
+  };
 
   const persistedReducer = persistReducer(persistConfig, makeRootReducer());
 

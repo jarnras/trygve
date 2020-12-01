@@ -18,5 +18,4 @@ module.exports = function () {
   // Set up our hooks
   eventService.hooks({ before: authenticate('jwt') });
   eventService.hooks({ before: hooks.before, after: hooks.after });
-
 };

@@ -1,6 +1,6 @@
 const moment = require('moment');
 
-module.exports = app => {
+module.exports = (app) => {
   const models = app.get('models');
 
   models.signup
@@ -21,14 +21,14 @@ module.exports = app => {
         },
       },
     })
-    .then(r => {
+    .then((r) => {
       console.log('Unconfirmed signups: ');
       console.log(r);
       console.log(r.map(s => s.dataValues.id));
       return r.map(s => s.dataValues.id);
     })
-    .then(r => {
-      r.map(id => {
+    .then((r) => {
+      r.map((id) => {
         models.signup
           .unscoped()
           .destroy({

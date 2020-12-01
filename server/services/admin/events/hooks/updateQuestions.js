@@ -10,22 +10,15 @@ module.exports = () => (hook) => {
   });
 
   const questionModel = hook.app.get('models').question;
-  return sequelize.transaction(t => {
-    return questionModel.destroy({
-      where: { eventId }
-    }, { transaction: t })
-      .then(() => {
-        return questionModel.bulkCreate(questionsToAdd, { updateOnDuplicate: true }, { transaction: t })
-          .then(() => {
-            return questionModel.findAll({ where: { eventId, deletedAt: null } }, { transaction: t })
-          });
-      });
-  })
+  return sequelize.transaction(t => questionModel.destroy({
+    where: { eventId },
+  }, { transaction: t })
+      .then(() => questionModel.bulkCreate(questionsToAdd, { updateOnDuplicate: true }, { transaction: t })
+          .then(() => questionModel.findAll({ where: { eventId, deletedAt: null } }, { transaction: t }))))
     .then((questions) => {
       hook.result.dataValues.questions = questions;
       return hook;
-    }).catch((error => {
+    }).catch(((error) => {
       throw new Error('Question update failed');
     }));
-
 };

@@ -1,24 +1,22 @@
 module.exports = () => (hook) => {
-    const models = hook.app.get('models');
-    const id = hook.id;
-    console.log(id)
-    return models.signup
+  const models = hook.app.get('models');
+  const id = hook.id;
+  console.log(id);
+  return models.signup
         .findOne({
-            where: {
-                id
-            },
+          where: {
+            id,
+          },
         })
         .then((res) => {
-            hook.result = res;
-            return models.signup
+          hook.result = res;
+          return models.signup
                 .destroy({
-                    where: {
-                        id
-                    },
+                  where: {
+                    id,
+                  },
                 })
-                .then((res) => {
-                    return hook;
-                });
+                .then(res => hook);
         })
         .catch(error => hook);
 };

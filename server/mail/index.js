@@ -1,7 +1,7 @@
 const ilmoconfig = require('../../config/ilmomasiina.config.js'); // eslint-disable-line
 const Email = require('email-templates');
 const path = require('path');
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
   host: ilmoconfig.mailSmtpServer,
@@ -45,7 +45,7 @@ const EmailService = {
 
     return email
       .render('../server/mail/emails/confirmation/html', brandedParams)
-      .then(html => {
+      .then((html) => {
         const subject = `${params.edited ? 'Muokkaus' : 'Ilmoittautumis'}vahvistus: ${params.event.title}`;
         return EmailService.send(to, subject, html);
       });
@@ -72,7 +72,7 @@ const EmailService = {
 
     return email
       .render('../server/mail/emails/newUser/html', brandedParams)
-      .then(html => {
+      .then((html) => {
         const subject = 'Käyttäjätunnukset Ilmomasiinaan';
         return EmailService.send(to, subject, html);
       });
@@ -99,8 +99,8 @@ const EmailService = {
     };
     return email
       .render('../server/mail/emails/queueMail/html', brandedParams)
-      .then(html => {
-        const subject = 'Pääsit varasijalta tapahtumaan ' + params.event.title;
+      .then((html) => {
+        const subject = `Pääsit varasijalta tapahtumaan ${params.event.title}`;
         return EmailService.send(to, subject, html);
       });
   },

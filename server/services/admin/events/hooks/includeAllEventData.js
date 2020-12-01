@@ -1,4 +1,4 @@
-module.exports = () => hook => {
+module.exports = () => (hook) => {
   const sequelize = hook.app.get('sequelize');
 
   hook.params.sequelize = {
