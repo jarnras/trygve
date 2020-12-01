@@ -98,7 +98,7 @@ Example of relevant lines in .env file
 
 ```
 BASE_URL=https://athene.fi
-process.env.PREFIX_URL=/ilmo
+PREFIX_URL=/ilmo
 PORT=2011
 ```
 

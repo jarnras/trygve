@@ -78,7 +78,7 @@ class EditSignup extends React.Component {
           <div className="EditSignup--wrapper">
             <h1>Hups, jotain meni pieleen</h1>
             <p>Ilmoittautumistasi ei voi enää muokata tai perua, koska tapahtuman ilmoittautuminen on sulkeutunut.</p>
-            <Link to={`${process.env.PREFIX_URL}/`} className="btn btn-default">
+            <Link to={`${PREFIX_URL}/`} className="btn btn-default">
               Takaisin etusivulle
             </Link>
           </div>
@@ -90,7 +90,7 @@ class EditSignup extends React.Component {
         <div className="container align-items-center">
           <div className="EditSignup--wrapper">
             <h1>Ilmoittautumisesi poistettiin onnistuneesti</h1>
-            <Link to={`${process.env.PREFIX_URL}/`} className="btn btn-default">
+            <Link to={`${PREFIX_URL}/`} className="btn btn-default">
               Takaisin etusivulle
             </Link>
           </div>
