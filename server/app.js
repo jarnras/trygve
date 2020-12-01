@@ -29,7 +29,7 @@ app.get('sequelize').sync({ alter: { drop: false } });
 app.hooks({
   error(context) {
     console.error(`Error in '${context.path}' service method '${context.method}'`, context.error.stack);
-  },
+  }
 });
 
 /*

@@ -41,13 +41,13 @@ class AppContainer extends Component {
           <div style={{ height: '100%' }}>
             <CoreLayout>
               <Router history={history}>
-                <Route path={`${process.env.PREFIX_URL}/`} component={requireAuth(Events)} />
-                <Route path={`${process.env.PREFIX_URL}/login`} component={Login} />
-                <Route path={`${process.env.PREFIX_URL}/event/:id`} component={requireAuth(SingleEvent)} />
-                <Route path={`${process.env.PREFIX_URL}/signup/:id/:editToken`} component={requireAuth(EditSignup)} />
-                <Route path={`${process.env.PREFIX_URL}/admin`} component={requireAuth(Admin)} />
-                <Route path={`${process.env.PREFIX_URL}/admin/users`} component={requireAuth(AdminUsers)} />
-                <Route path={`${process.env.PREFIX_URL}/admin/edit/:id`} component={requireAuth(Editor)} />
+                <Route path={`${PREFIX_URL}/`} component={Events} />
+                <Route path={`${PREFIX_URL}/event/:id`} component={SingleEvent} />
+                <Route path={`${PREFIX_URL}/signup/:id/:editToken`} component={EditSignup} />
+                <Route path={`${PREFIX_URL}/login`} component={Login} />
+                <Route path={`${PREFIX_URL}/admin`} component={requireAuth(Admin)} />
+                <Route path={`${PREFIX_URL}/admin/users`} component={requireAuth(AdminUsers)} />
+                <Route path={`${PREFIX_URL}/admin/edit/:id`} component={requireAuth(Editor)} />
                 <Route path="*" component={PageNotFound} />
                 <Route />
               </Router>

@@ -85,7 +85,7 @@ class AdminUserList extends React.Component {
         const { usersLoading, usersError, users } = this.props;
         return (
             <div className="container">
-                <Link to={`${process.env.PREFIX_URL}/admin`} style={{ margin: 0 }}>
+                <Link to={`${PREFIX_URL}/admin`} style={{ margin: 0 }}>
                     &#8592; Takaisin
             </Link>
                 <h1>Käyttäjien hallinta</h1>
