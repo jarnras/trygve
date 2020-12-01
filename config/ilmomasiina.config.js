@@ -6,13 +6,15 @@ const config = {
   mysqlDatabase: process.env.MYSQL_DATABASE,
   editTokenSalt: process.env.EDIT_TOKEN_SALT,
   mailFrom: process.env.MAIL_FROM,
+  mailSmtpServer: process.env.MAIL_SMTP_SERVER,
+  mailSmtpPort: process.env.MAIL_SMTP_PORT,
+  mailSmtpUser: process.env.MAIL_SMTP_USER,
+  mailSmtpPassword: process.env.MAIL_SMTP_PASSWORD,
   feathersAuthSecret: process.env.FEATHERS_AUTH_SECRET,
-  mailgunApiKey: process.env.MAILGUN_API_KEY,
-  mailgunDomain: process.env.MAILGUN_DOMAIN,
   baseUrl: process.env.BASE_URL,
   prefixUrl: process.env.PREFIX_URL || '',
   adminRegistrationAllowed:
-    process.env.ADMIN_REGISTRATION_ALLOWED == 'true' || false,
+  process.env.ADMIN_REGISTRATION_ALLOWED === 'true' || false,
   brandingMailFooterText: process.env.BRANDING_MAIL_FOOTER_TEXT,
   brandingMailFooterLink: `${process.env.BASE_URL}${process.env.PREFIX_URL ||
     ''}`,

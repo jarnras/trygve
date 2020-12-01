@@ -252,7 +252,7 @@ class SingleEvent extends React.Component {
           />
         ) : (
             <div className="container singleEventContainer">
-              <Link to={`${PREFIX_URL}/`} style={{ margin: 0 }}>
+              <Link to={`${process.env.PREFIX_URL}/`} style={{ margin: 0 }}>
                 &#8592; Takaisin
             </Link>
               <div className="row">

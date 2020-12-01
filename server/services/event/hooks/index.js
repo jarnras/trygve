@@ -1,4 +1,5 @@
 const hooks = require('feathers-hooks-common');
+const { authenticate } = require('@feathersjs/authentication');
 
 const includeQuotas = require('./includeQuotas');
 const includeAllEventData = require('./includeAllEventData');
@@ -7,7 +8,7 @@ const formatOptionsAsArray = require('./formatOptionsAsArray');
 const addOpenStatus = require('./addOpenStatus');
 
 exports.before = {
-  all: [],
+  all: [authenticate('jwt')],
   find: [includeQuotas()],
   get: [includeAllEventData()],
   create: [hooks.disallow('external')],

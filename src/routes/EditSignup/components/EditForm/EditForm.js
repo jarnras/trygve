@@ -10,11 +10,11 @@ export class EditForm extends React.Component {
   constructor(props) {
     super(props);
     this.parseSubmit = this.parseSubmit.bind(this);
-    this.setError = this.setError.bind(this)
-    this.state = { inputError: false }
+    this.setError = this.setError.bind(this);
+    this.state = { inputError: false };
   }
   setError() {
-    this.setState({ inputError: true })
+    this.setState({ inputError: true });
   }
   parseSubmit(data) {
     const answers = {
@@ -93,8 +93,7 @@ export class EditForm extends React.Component {
       }
 
       if (question.type === 'select') {
-
-        let optionsArray = [{ label: "Valitse...", value: null }];
+        const optionsArray = [{ label: 'Valitse...', value: null }];
 
         question.options.split(';').map(option => optionsArray.push({ label: option }));
 
@@ -135,7 +134,7 @@ export class EditForm extends React.Component {
       <div className="form-wrapper">
         <div className="container">
           <div className="col-xs-12 col-md-8 col-md-offset-2">
-            {this.state.inputError ? <p style={{ color: "#a94442" }}>Ilmoittautumisessasi on virheitä.</p> : null}
+            {this.state.inputError ? <p style={{ color: '#a94442' }}>Ilmoittautumisessasi on virheitä.</p> : null}
             <h2>Muokkaa ilmoittautumista</h2>
             {this.props.signup.status != null ? <p>{signupStatus()}</p> : null}
 
@@ -178,7 +177,7 @@ export class EditForm extends React.Component {
                   disabled={this.props.loading}
                 />
               </div>
-              <Link className="btn btn-link pull-right" to={`${PREFIX_URL}/`} >
+              <Link className="btn btn-link pull-right" to={`${process.env.PREFIX_URL}/`} >
                 Peruuta
               </Link>
             </Formsy.Form>

@@ -1,3 +1,5 @@
+const { authenticate } = require('@feathersjs/authentication');
+
 const includeQuotas = require('./hooks/includeQuotas');
 const includeAllEventData = require('./hooks/includeAllEventData');
 const formatOptionsAsArray = require('./hooks/formatOptionsAsArray');
@@ -6,7 +8,7 @@ const updateQuotas = require('./hooks/updateQuotas');
 const updateQuestions = require('./hooks/updateQuestions');
 
 exports.before = {
-  all: [],
+  all: [authenticate('jwt')],
   find: [includeQuotas()],
   get: [includeAllEventData()],
   create: [includeAllEventData()],

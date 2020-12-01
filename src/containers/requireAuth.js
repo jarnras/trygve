@@ -12,13 +12,13 @@ function requireAuth(WrappedComponent) {
     };
 
     componentDidMount() {
-      let { accessTokenExpires } = this.props
+      let { accessTokenExpires } = this.props;
       console.log(accessTokenExpires)
       if (!accessTokenExpires) {
         this.props.redirectToLogin();
       }
       if (typeof (accessTokenExpires) === "string") {
-        accessTokenExpires = new Date(accessTokenExpires)
+        accessTokenExpires = new Date(accessTokenExpires);
       }
       if (accessTokenExpires < new Date()) {
         this.props.redirectToLogin();
