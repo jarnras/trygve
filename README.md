@@ -1,20 +1,20 @@
 # Current status
 
 ```diff
-- Hello you random bypasser!
+- Hello random pybasser!
 
-- Ilmomasiina is currently at alpha testing phase. You use it. Something breaks? You fix it.
+- Trygve is currently at alpha testing phase. You use it. Something breaks? You fix it.
 
-- In case you're interested in development. We heavily recommend you to contact @peksi
+- In case you're interested in development. We heavily recommend you to contact @jarnras
 
 ```
 
-Current defelopment is being held on `otax/production` branch.
+Current development is being held on `xxx` branch.
 
 
-# Ilmomasiina
+# Trygve
 
-Ilmomasiina is Athene's event registration system.
+Trygve is Trygve.
 
 ## Requirements
 
