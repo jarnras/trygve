@@ -39,11 +39,11 @@ class AdminEventList extends React.Component {
   }
 
   onDeleteEvent(eventId) {
-    if (window.confirm("Haluatko varmasti poistaa tämän tapahtuman? Tätä toimintoa ei voi perua.")) {
+    if (window.confirm('Haluatko varmasti poistaa tämän tapahtuman? Tätä toimintoa ei voi perua.')) {
       this.props.deleteEvent(eventId)
         .then((success) => {
           if (!success) {
-            console.alert("Poisto epäonnistui :(")
+            console.alert('Poisto epäonnistui :(');
           }
           this.props.updateEvents();
         });
@@ -51,21 +51,20 @@ class AdminEventList extends React.Component {
   }
 
   createUser(email) {
-    console.log(email)
+    console.log(email);
     this.setState({
       userFormLoading: true,
     }, async () => {
       try {
         // TODO: better error handling
-        let success = await minDelay(this.props.createUserAsync({ email }), 1000);
+        const success = await minDelay(this.props.createUserAsync({ email }), 1000);
         if (success) {
-          toast.success('Käyttäjän luominen onnistui,', { autoClose: 2000 })
-        }
-        else {
+          toast.success('Käyttäjän luominen onnistui,', { autoClose: 2000 });
+        } else {
           toast.error('Käyttäjän luominen epäonnistui.', { autoClose: 2000 });
         }
       } catch (error) {
-        console.log(error)
+        console.log(error);
         toast.error('Käyttäjän luominen epäonnistui.', { autoClose: 2000 });
       }
 
@@ -79,16 +78,14 @@ class AdminEventList extends React.Component {
 
   renderEventRows() {
     const { events } = this.props;
-    return _.map(events, (e) => {
-      return (
-        <AdminEventListItem
-          key={e.id}
-          signups={_.sum(_.map(e.quota, q => q.signupCount))}
-          data={e}
-          onDelete={this.onDeleteEvent}
+    return _.map(events, e => (
+      <AdminEventListItem
+        key={e.id}
+        signups={_.sum(_.map(e.quota, q => q.signupCount))}
+        data={e}
+        onDelete={this.onDeleteEvent}
         />
-      );
-    });
+      ));
   }
 
   render() {
@@ -127,7 +124,7 @@ class AdminEventList extends React.Component {
 const mapDispatchToProps = {
   updateEvents: AdminActions.getEventsAsync,
   deleteEvent: AdminActions.deleteEventAsync,
-  createUserAsync: AdminActions.createUserAsync
+  createUserAsync: AdminActions.createUserAsync,
 };
 
 const mapStateToProps = state => ({

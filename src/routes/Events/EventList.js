@@ -77,7 +77,7 @@ class EventList extends React.Component {
   }
 
   render() {
-    const sortFunction = event => {
+    const sortFunction = (event) => {
       const now = moment();
 
       // First upcoming events
@@ -96,7 +96,7 @@ class EventList extends React.Component {
       'title',
     ]);
 
-    const tableRows = eventsSorted.map(event => {
+    const tableRows = eventsSorted.map((event) => {
       const eventState = signupState(
         event.date,
         event.registrationStartDate,

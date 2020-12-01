@@ -25,27 +25,27 @@ export class SignupList extends React.Component {
       <div className="quota">
         {this.props.title ? <h3>{this.props.title}</h3> : ''}
         {!this.props.rows.length ? <p>Ei ilmoittautumisia.</p> :
-          <table className='table table-condensed table-responsive'>
-            <thead>
-              <tr className='active'>
-                <th key="position">Sija</th>
-                <th key="attendee">Nimi</th>
-                {this.props.questions.map((q, i) => <th key={i}>{q.question}</th>)}
-                <th key="datetime">Ilmoittautumisaika</th>
-                <th key="delete">Toiminnot</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.props.rows.map((row, i) =>
-                <TableRow
-                  answers={row.answers}
-                  firstName={row.firstName}
-                  lastName={row.lastName}
-                  createdAt={row.createdAt}
-                  index={i + 1}
-                  key={i} />)}
-            </tbody>
-          </table>
+        <table className='table table-condensed table-responsive'>
+          <thead>
+            <tr className='active'>
+              <th key="position">Sija</th>
+              <th key="attendee">Nimi</th>
+              {this.props.questions.map((q, i) => <th key={i}>{q.question}</th>)}
+              <th key="datetime">Ilmoittautumisaika</th>
+              <th key="delete">Toiminnot</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.rows.map((row, i) =>
+              <TableRow
+                answers={row.answers}
+                firstName={row.firstName}
+                lastName={row.lastName}
+                createdAt={row.createdAt}
+                index={i + 1}
+                key={i} />)}
+          </tbody>
+        </table>
         }
       </div>
     );

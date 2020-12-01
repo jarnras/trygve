@@ -11,8 +11,8 @@ module.exports = (app) => {
       where: {
         $and: {
           $or: {
-              firstName: {
-                [sequelize.Op.ne]: redactionKey,
+            firstName: {
+              [sequelize.Op.ne]: redactionKey,
             },
             lastName: {
               [sequelize.Op.ne]: redactionKey,
@@ -39,6 +39,5 @@ module.exports = (app) => {
           signup.updateAttributes({ firstName: redactionKey, lastName: redactionKey, email: null });
         });
       }
-
     });
 };

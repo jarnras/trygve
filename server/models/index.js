@@ -87,7 +87,7 @@ module.exports = function () {
 
   app.set('models', models);
 
-  Object.keys(sequelize.models).forEach(modelName => {
+  Object.keys(sequelize.models).forEach((modelName) => {
     if ('associate' in sequelize.models[modelName]) {
       sequelize.models[modelName].associate();
     }

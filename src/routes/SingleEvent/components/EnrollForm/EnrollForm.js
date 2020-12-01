@@ -9,11 +9,11 @@ export class EnrollForm extends React.Component {
   constructor(props) {
     super(props);
     this.parseSubmit = this.parseSubmit.bind(this);
-    this.setError = this.setError.bind(this)
-    this.state = { inputError: false }
+    this.setError = this.setError.bind(this);
+    this.state = { inputError: false };
   }
   setError() {
-    this.setState({ inputError: true })
+    this.setState({ inputError: true });
   }
   parseSubmit(data) {
     const answers = {
@@ -90,7 +90,7 @@ export class EnrollForm extends React.Component {
 
       if (question.type === 'select') {
         if (question.options.length > 3) { // render select if more than 3 options
-          let optionsArray = [{ label: "Valitse...", value: null }];
+          const optionsArray = [{ label: 'Valitse...', value: null }];
 
           question.options.map(option => optionsArray.push({ label: option }));
 
@@ -146,7 +146,7 @@ export class EnrollForm extends React.Component {
 
       if (status == 'in-quota') {
         const quota = _.find(quotas, { id: quotaId });
-        return `Olet kiintiössä ${quota.title} sijalla ${position + (quota.size ? " / " + quota.size : "")}.`;
+        return `Olet kiintiössä ${quota.title} sijalla ${position + (quota.size ? ` / ${quota.size}` : '')}.`;
       }
 
       if (status == 'in-open') {
@@ -161,7 +161,7 @@ export class EnrollForm extends React.Component {
         <div className="container">
           <a className="close" onClick={() => this.props.closeForm()} />
           <div className="col-xs-12 col-md-8 col-md-offset-2">
-            {this.state.inputError ? <p style={{ color: "#a94442" }}>Ilmoittautumisessasi on virheitä.</p> : null}
+            {this.state.inputError ? <p style={{ color: '#a94442' }}>Ilmoittautumisessasi on virheitä.</p> : null}
             <h2>Ilmoittaudu</h2>
             {this.props.signup.status != null ? <p>{signupStatus()}</p> : null}
 

@@ -22,7 +22,7 @@ module.exports = () => (hook) => {
           id,
         },
       })
-      .then(signup => {
+      .then((signup) => {
         if (signup === null) { // Event not found with id, probably deleted
           hook.result = {
             signup,
@@ -43,7 +43,7 @@ module.exports = () => (hook) => {
                   id: quota.eventId,
                 },
               })
-              .then((event) =>
+              .then(event =>
                 event.getQuestions().then((questions) => {
                   questions.map((question) => {
                     const answer = _.find(userAnswers, { questionId: question.id });

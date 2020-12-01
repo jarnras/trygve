@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { ToastContainer, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { PersistGate } from 'redux-persist/integration/react'
+import { PersistGate } from 'redux-persist/integration/react';
 
 
 // We only need to import the modules necessary for initial render
@@ -41,9 +41,9 @@ class AppContainer extends Component {
           <div style={{ height: '100%' }}>
             <CoreLayout>
               <Router history={history}>
-                <Route path={`${PREFIX_URL}/`} component={Events} />
-                <Route path={`${PREFIX_URL}/event/:id`} component={SingleEvent} />
-                <Route path={`${PREFIX_URL}/signup/:id/:editToken`} component={EditSignup} />
+                <Route path={`${PREFIX_URL}/`} component={requireAuth(Events)} />
+                <Route path={`${PREFIX_URL}/event/:id`} component={requireAuth(SingleEvent)} />
+                <Route path={`${PREFIX_URL}/signup/:id/:editToken`} component={requireAuth(EditSignup)} />
                 <Route path={`${PREFIX_URL}/login`} component={Login} />
                 <Route path={`${PREFIX_URL}/admin`} component={requireAuth(Admin)} />
                 <Route path={`${PREFIX_URL}/admin/users`} component={requireAuth(AdminUsers)} />

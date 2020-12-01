@@ -2,6 +2,7 @@ const _ = require('lodash');
 const EmailService = require('../../../mail/');
 const moment = require('moment');
 const config = require('../../../../config/ilmomasiina.config.js');
+
 module.exports = () => (hook) => {
   const models = hook.app.get('models');
 

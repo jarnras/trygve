@@ -11,7 +11,7 @@ module.exports = () => (hook) => {
   return models.signup
     .findOne({
       where: {
-        id
+        id,
       },
     })
     .then((res) => {
@@ -19,12 +19,10 @@ module.exports = () => (hook) => {
       return models.signup
         .destroy({
           where: {
-            id
+            id,
           },
         })
-        .then((res) => {
-          return hook;
-        });
+        .then(res => hook);
     })
     .catch(error => hook);
 };

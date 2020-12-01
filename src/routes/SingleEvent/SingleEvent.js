@@ -80,7 +80,7 @@ class SingleEvent extends React.Component {
         ...answers,
       },
     );
-    let success = response === true;
+    const success = response === true;
     if (success) {
       toast.update(this.toastId, {
         render: 'Ilmoittautuminen onnistui!',
@@ -92,7 +92,7 @@ class SingleEvent extends React.Component {
         formOpened: false,
       });
     } else {
-      let toast_text =
+      const toast_text =
         'Ilmoittautuminen ei onnistunut. Tarkista, että kaikki pakolliset kentät on täytetty ja yritä uudestaan.';
       toast.update(this.toastId, {
         render: toast_text,
@@ -116,7 +116,7 @@ class SingleEvent extends React.Component {
     return (
       <div>
         <h2>Ilmoittautuneet</h2>
-        {_.map(Object.keys(quotaData), quotaName => {
+        {_.map(Object.keys(quotaData), (quotaName) => {
           const quota = quotaData[quotaName];
 
           if (quotaName === WAITLIST) {
@@ -137,16 +137,15 @@ class SingleEvent extends React.Component {
                 key={quotaName}
               />
             );
-          } else {
-            return (
-              <SignupList
-                title={quotaName}
-                questions={_.filter(event.questions, 'public')}
-                rows={quota.signups}
-                key={quotaName}
-              />
-            );
           }
+          return (
+            <SignupList
+              title={quotaName}
+              questions={_.filter(event.questions, 'public')}
+              rows={quota.signups}
+              key={quotaName}
+              />
+          );
         })}
       </div>
     );
@@ -162,7 +161,7 @@ class SingleEvent extends React.Component {
     return (
       <div className="sidebar-widget">
         <h3>Ilmoittautuneet</h3>
-        {_.map(Object.keys(quotaData), quotaName => {
+        {_.map(Object.keys(quotaData), (quotaName) => {
           const quota = quotaData[quotaName];
           if (quotaName === OPENQUOTA) {
             return (
@@ -178,22 +177,20 @@ class SingleEvent extends React.Component {
               return <p>{`Jonossa: ${quota.signups.length}`}</p>;
             }
             return null;
-          } else {
-            return (
-              <ViewProgress
-                title={quotaName}
-                value={Math.min(quota.signups.length, quota.size)}
-                max={quota.size}
-                key={quotaName}
-              />
-            );
           }
+          return (
+            <ViewProgress
+              title={quotaName}
+              value={Math.min(quota.signups.length, quota.size)}
+              max={quota.size}
+              key={quotaName}
+              />
+          );
         })}
       </div>
     );
   }
-  signupButtonRenderer(event, isOpen, total, seconds,) {
-
+  signupButtonRenderer(event, isOpen, total, seconds) {
     return (
       <div className="sidebar-widget">
         <h3>Ilmoittautuminen</h3>
@@ -205,7 +202,7 @@ class SingleEvent extends React.Component {
               event.registrationEndDate,
             ).label
           }
-          {total < 60000 && !isOpen ? <span style={{ color: "green" }} > {` (${seconds}  s)`}</span> : null}
+          {total < 60000 && !isOpen ? <span style={{ color: 'green' }} > {` (${seconds}  s)`}</span> : null}
         </p>
         {event.quota
           ? event.quota.map((quota, index) => (
@@ -219,17 +216,15 @@ class SingleEvent extends React.Component {
           ))
           : ''}
       </div>
-    )
-
+    );
   }
   renderSignupButtons() {
     const { event } = this.props;
     return (
       <Countdown
-        daysInHours={true}
+        daysInHours
         date={new Date(new Date().getTime() + event.millisTillOpening)}
-        renderer={props => this.signupButtonRenderer(event, props.completed, props.total, props.seconds)}>
-      </Countdown>
+        renderer={props => this.signupButtonRenderer(event, props.completed, props.total, props.seconds)} />
 
     );
   }
@@ -251,58 +246,58 @@ class SingleEvent extends React.Component {
             key={event.id}
           />
         ) : (
-            <div className="container singleEventContainer">
-              <Link to={`${PREFIX_URL}/`} style={{ margin: 0 }}>
+          <div className="container singleEventContainer">
+            <Link to={`${PREFIX_URL}/`} style={{ margin: 0 }}>
                 &#8592; Takaisin
             </Link>
-              <div className="row">
-                <div className="col-xs-12 col-sm-8">
-                  <h1>{event.title}</h1>
-                  <div className="event-heading">
-                    {event.date ? (
-                      <p>
-                        <strong>Ajankohta:</strong>{' '}
-                        {moment(event.date).format('D.M.Y [klo] HH:mm')}
-                      </p>
+            <div className="row">
+              <div className="col-xs-12 col-sm-8">
+                <h1>{event.title}</h1>
+                <div className="event-heading">
+                  {event.date ? (
+                    <p>
+                      <strong>Ajankohta:</strong>{' '}
+                      {moment(event.date).format('D.M.Y [klo] HH:mm')}
+                    </p>
                     ) : null}
-                    {event.location ? (
-                      <p>
-                        <strong>Sijainti:</strong> {event.location}
-                      </p>
+                  {event.location ? (
+                    <p>
+                      <strong>Sijainti:</strong> {event.location}
+                    </p>
                     ) : null}
-                    {event.price ? (
-                      <p>
-                        <strong>Hinta:</strong> {event.price}
-                      </p>
+                  {event.price ? (
+                    <p>
+                      <strong>Hinta:</strong> {event.price}
+                    </p>
                     ) : null}
-                    {event.webpageUrl ? (
-                      <p>
-                        <strong>Kotisivut:</strong>{' '}
-                        <a href={event.webpageUrl} title="Kotisivut">
-                          {event.webpageUrl}
-                        </a>
-                      </p>
+                  {event.webpageUrl ? (
+                    <p>
+                      <strong>Kotisivut:</strong>{' '}
+                      <a href={event.webpageUrl} title="Kotisivut">
+                        {event.webpageUrl}
+                      </a>
+                    </p>
                     ) : null}
-                    {event.facebook ? (
-                      <p>
-                        <strong>Facebook-tapahtuma:</strong>{' '}
-                        <a href={event.facebook} title="Facebook-tapahtuma">
-                          {event.facebook}
-                        </a>
-                      </p>
+                  {event.facebook ? (
+                    <p>
+                      <strong>Facebook-tapahtuma:</strong>{' '}
+                      <a href={event.facebook} title="Facebook-tapahtuma">
+                        {event.facebook}
+                      </a>
+                    </p>
                     ) : null}
-                  </div>
-                  <p className="description">
-                    <ReactAutolinker text={event.description} options={{ newWindow: true, phone: false, mention: false, hashtag: false }} />
-                  </p>
                 </div>
-                <div className="col-xs-12 col-sm-4 pull-right">
-                  {this.renderSignupButtons()}
-                  {this.renderQuotaStatus()}
-                </div>
-                <div className="col-xs-12">{this.renderSignupLists()}</div>
+                <p className="description">
+                  <ReactAutolinker text={event.description} options={{ newWindow: true, phone: false, mention: false, hashtag: false }} />
+                </p>
               </div>
+              <div className="col-xs-12 col-sm-4 pull-right">
+                {this.renderSignupButtons()}
+                {this.renderQuotaStatus()}
+              </div>
+              <div className="col-xs-12">{this.renderSignupLists()}</div>
             </div>
+          </div>
           )
         }
       </div>

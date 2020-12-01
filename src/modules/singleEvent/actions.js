@@ -64,20 +64,20 @@ export const completeSignupAsync = (signupId, data) => (dispatch) => {
     },
   })
     .then(res =>
-      JSON.parse(res.body)
+      JSON.parse(res.body),
     )
     .then((res) => {
-      console.log(res)
+      console.log(res);
       if (res.code && res.code !== 200) {
-        throw new Error(res.message)
+        throw new Error(res.message);
       }
       dispatch(setSignup(res));
-      return true
+      return true;
     })
     .catch((error) => {
       console.error('Error in completeSignupAsync', error);
       dispatch(setSignupError());
-      return false
+      return false;
     });
 };
 

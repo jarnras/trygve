@@ -12,7 +12,7 @@ async function minDelay(func, ms = 1000) {
 class UserForm extends React.Component {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired,
-    loading: PropTypes.bool.isRequired
+    loading: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
