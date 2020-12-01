@@ -106,7 +106,7 @@ class EventList extends React.Component {
       const rows = [
         <TableRow
           title={event.title}
-          link={`${PREFIX_URL}/event/${event.id}`}
+          link={`${process.env.PREFIX_URL}/event/${event.id}`}
           date={event.date}
           signupLabel={eventState.label}
           signups={

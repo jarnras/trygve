@@ -15,13 +15,13 @@ if (config.adminRegistrationAllowed) {
 }
 
 exports.before = {
-  all: [],
-  find: [authenticate('jwt')],
-  get: [authenticate('jwt')],
+  all: [authenticate('jwt')],
+  find: [],
+  get: [],
   create: createHook,
   update: [hooks.disallow('external'), hashPassword('password')],
   patch: [hooks.disallow('external'), hashPassword('password')],
-  remove: [authenticate('jwt')],
+  remove: [],
 };
 
 exports.after = {

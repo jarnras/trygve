@@ -88,7 +88,7 @@ export const publishEventAsync = (data, token) => async (dispatch) => {
   dispatch(setEventPublishLoading());
   const cleaned = cleanEventData(data);
   console.log('CLEANED', cleaned);
-  const event = await request('POST', `${PREFIX_URL}/api/admin/events`, {
+  const event = await request('POST', `${process.env.PREFIX_URL}/api/admin/events`, {
     json: cleaned,
     headers: { Authorization: token },
   }).then(res => {
@@ -116,7 +116,7 @@ export const updateEventAsync = (data, token) => async (dispatch) => {
   dispatch(setEventPublishLoading());
   const cleaned = cleanEventData(data);
   console.log('CLEANED', cleaned);
-  const event = await request('PATCH', `${PREFIX_URL}/api/admin/events/${data.id}`, {
+  const event = await request('PATCH', `${process.env.PREFIX_URL}/api/admin/events/${data.id}`, {
     json: cleaned,
     headers: { Authorization: token },
   }).then(res => {
@@ -142,7 +142,7 @@ export const updateEventAsync = (data, token) => async (dispatch) => {
 
 export const getEventAsync = (eventId, token) => async (dispatch) => {
   dispatch(setEventLoading());
-  const res = await request('GET', `${PREFIX_URL}/api/admin/events/${eventId}`, {
+  const res = await request('GET', `${process.env.PREFIX_URL}/api/admin/events/${eventId}`, {
     headers: { Authorization: token },
   }).then(res => JSON.parse(res.body))
     .then((res) => {
@@ -157,4 +157,3 @@ export const getEventAsync = (eventId, token) => async (dispatch) => {
 
   return res;
 };
-

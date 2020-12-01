@@ -1,7 +1,7 @@
 # Current status
 
 ```diff
-- Hello you random bypasser! 
+- Hello you random bypasser!
 
 - Ilmomasiina is currently at alpha testing phase. You use it. Something breaks? You fix it.
 
@@ -18,8 +18,8 @@ Ilmomasiina is Athene's event registration system.
 
 ## Requirements
 
-- Node.js `^8.9.4`
-- npm `^5.6.0`
+- Node.js `^14.13.1`
+- npm `^6.14.8`
 - MySQL `^8.0`
 
 ## MYSQL Setup
@@ -39,7 +39,7 @@ Ilmomasiina is Athene's event registration system.
 4. Follow Mac instructions
 5. Fix permissions (this is probably too permissive, but it works): `GRANT ALL PRIVILEGES ON *.* TO 'sampo'@'localhost' WITH GRANT OPTION;`
 6. Exit with `exit` and sign in with your new user e. g. `mysql -u juuso -p` (don't use `mysql -u juuso -p password`)
-7. Follow Mac instructions step 6 
+7. Follow Mac instructions step 6
 
 ## Getting started
 
@@ -98,7 +98,7 @@ Example of relevant lines in .env file
 
 ```
 BASE_URL=https://athene.fi
-PREFIX_URL=/ilmo
+process.env.PREFIX_URL=/ilmo
 PORT=2011
 ```
 

@@ -4,8 +4,13 @@ const path = require('path');
 const nodemailer = require('nodemailer')
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.ayy.fi',
-  port: 25,
+  host: ilmoconfig.mailSmtpServer,
+  port: ilmoconfig.mailSmtpPort,
+  secure: true, // use TLS
+  auth: {
+    user: ilmoconfig.mailSmtpUser,
+    pass: ilmoconfig.mailSmtpPassword,
+  },
 });
 
 const EmailService = {

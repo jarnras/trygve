@@ -1,4 +1,5 @@
 const hooks = require('feathers-hooks-common');
+const { authenticate } = require('@feathersjs/authentication');
 
 const validateNewSignup = require('./validateNewSignup.js');
 const validateSignupFields = require('./validateSignupFields.js');
@@ -11,7 +12,7 @@ const deleteSignup = require('./deleteSignup.js');
 const sendEmailToQueue = require('./sendEmailToQueue.js');
 
 exports.before = {
-  all: [],
+  all: [authenticate('jwt')],
   find: [hooks.disallow('external')],
   get: [getSignupAndEvent()],
   create: [validateNewSignup()],
