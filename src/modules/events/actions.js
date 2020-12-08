@@ -20,9 +20,12 @@ export const setEventsError = () => (dispatch) => {
   });
 };
 
-export const getEventsAsync = () => (dispatch) => {
+export const getEventsAsync = () => (dispatch, getState) => {
   dispatch(setEventsLoading());
-  request('GET', `${PREFIX_URL}/api/events`)
+  const accessToken = getState().admin.accessToken;
+  request('GET', `${PREFIX_URL}/api/events`, {
+    headers: { Authorization: accessToken },
+  })
     .then(res => JSON.parse(res.body))
     .then((res) => {
       dispatch(setEvents(res));

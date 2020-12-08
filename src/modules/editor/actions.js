@@ -105,7 +105,6 @@ export const publishEventAsync = (data, token) => async (dispatch) => {
       dispatch(setEventPublishError());
       throw new Error(error);
     });
-
   return event;
 };
 
@@ -154,4 +153,3 @@ export const getEventAsync = (eventId, token) => async (dispatch) => {
 
   return res;
 };
-

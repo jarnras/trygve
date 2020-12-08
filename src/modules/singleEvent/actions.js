@@ -25,9 +25,12 @@ export const setSignupError = () => (dispatch) => {
   dispatch({ type: ActionTypes.SET_SIGNUP_ERROR });
 };
 
-export const updateEventAsync = eventId => (dispatch) => {
+export const updateEventAsync = eventId => (dispatch, getState) => {
   dispatch(setEventLoading());
-  return request('GET', `${PREFIX_URL}/api/events/${eventId}`)
+  const accessToken = getState().admin.accessToken;
+  return request('GET', `${PREFIX_URL}/api/events/${eventId}`, {
+    headers: { Authorization: accessToken },
+  })
     .then(res => JSON.parse(res.body))
     .then((res) => {
       dispatch(setEvent(res));
@@ -38,9 +41,13 @@ export const updateEventAsync = eventId => (dispatch) => {
     });
 };
 
-export const attachPositionAsync = quotaId => (dispatch) => {
+export const attachPositionAsync = quotaId => (dispatch, getState) => {
   dispatch(setSignupLoading());
-  return request('POST', `${PREFIX_URL}/api/signups`, { json: { quotaId } })
+  const accessToken = getState().admin.accessToken;
+  return request('POST', `${PREFIX_URL}/api/signups`, {
+    json: { quotaId },
+    headers: { Authorization: accessToken },
+  })
     .then(res => JSON.parse(res.body))
     .then((res) => {
       dispatch(setSignup(res));
@@ -51,10 +58,11 @@ export const attachPositionAsync = quotaId => (dispatch) => {
     });
 };
 
-export const completeSignupAsync = (signupId, data) => (dispatch) => {
+export const completeSignupAsync = (signupId, data) => (dispatch, getState) => {
   dispatch(setSignupLoading());
-
+  const accessToken = getState().admin.accessToken;
   return request('PATCH', `${PREFIX_URL}/api/signups/${signupId}`, {
+    headers: { Authorization: accessToken },
     json: {
       editToken: data.editToken,
       firstName: data.firstName,
@@ -81,9 +89,12 @@ export const completeSignupAsync = (signupId, data) => (dispatch) => {
     });
 };
 
-export const cancelSignupAsync = (signupId, editToken) => (dispatch) => {
+export const cancelSignupAsync = (signupId, editToken) => (dispatch, getState) => {
   dispatch(setSignupLoading());
-  return request('DELETE', `${PREFIX_URL}/api/signups/${signupId}?editToken=${editToken}`)
+  const accessToken = getState().admin.accessToken;
+  return request('DELETE', `${PREFIX_URL}/api/signups/${signupId}?editToken=${editToken}`, {
+    headers: { Authorization: accessToken },
+  })
     .then(res => JSON.parse(res.body))
     .then(() => {
       dispatch(setSignup({}));

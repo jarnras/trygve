@@ -35,10 +35,14 @@ export const resetEventState = () => (dispatch) => {
   dispatch({ type: ActionTypes.RESET });
 };
 
-export const getSignupAndEventAsync = (id, editToken) => (dispatch) => {
+export const getSignupAndEventAsync = (id, editToken) => (dispatch, getState) => {
   dispatch(setLoading());
 
-  return request('GET', `${PREFIX_URL}/api/signups/${id}?editToken=${editToken}`)
+  const accessToken = getState().admin.accessToken;
+
+  return request('GET', `${PREFIX_URL}/api/signups/${id}?editToken=${editToken}`, {
+    headers: { Authorization: accessToken },
+  })
     .then(res => JSON.parse(res.body))
     .then((res) => {
       if (res.signup === null) throw new Error('signup not found');
@@ -52,9 +56,14 @@ export const getSignupAndEventAsync = (id, editToken) => (dispatch) => {
     });
 };
 
-export const deleteSignupAsync = (id, editToken) => (dispatch) => {
+export const deleteSignupAsync = (id, editToken) => (dispatch, getState) => {
   dispatch(setLoading());
-  return request('DELETE', `${PREFIX_URL}/api/signups/${id}?editToken=${editToken}`)
+
+  const accessToken = getState().admin.accessToken;
+
+  return request('DELETE', `${PREFIX_URL}/api/signups/${id}?editToken=${editToken}`, {
+    headers: { Authorization: accessToken },
+  })
     .then(res => JSON.parse(res.body))
     .then((res) => {
       dispatch(setDeleted());
