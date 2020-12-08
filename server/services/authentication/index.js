@@ -19,7 +19,7 @@ module.exports = function () {
       audience: 'http://localhost:3000',
       issuer: 'feathers',
       algorithm: 'HS256',
-      expiresIn: '1m',
+      expiresIn: '1d',
     },
     local: {
       entity: 'user',
