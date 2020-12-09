@@ -4,6 +4,12 @@
   border: none !important;
   font-family: $font-family-header;
 
+  .navbar-nav {
+    @media(max-width: 767px) {
+      margin-top: 50px;
+    }
+  }
+
   a.navbar-brand,
   a.navbar-brand:focus,
   a.navbar-brand:hover {
