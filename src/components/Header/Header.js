@@ -20,11 +20,11 @@ class Header extends React.Component {
     return (
       <nav className="navbar navbar-collapse navbar-default" id="navbarNav">
         <div className="container">
-          <a onClick={() => browserHistory.push(`/`)} className="navbar-brand">
-            Lykademens Intra
-          </a>
+          <div class="navbar-header">
+            <a onClick={() => browserHistory.push(`/`)} className="navbar-brand">Lykademens Intra</a>
+          </div>
           {loggedIn && (
-            <ul className="nav navbar-nav nav-pills">
+            <ul className="nav navbar-nav nav-pills nav-stacked ">
               <li className={`nav-item ${pathname === "/" ? 'active' : ''}`}>
                 <a onClick={() => browserHistory.push(`/`)}> Hem </a>
               </li>
@@ -51,8 +51,8 @@ class Header extends React.Component {
           ) : (
             ''
             )}
-            </div>
-        </nav>
+        </div>
+      </nav>
     );
   }
 }
