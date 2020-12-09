@@ -15,14 +15,15 @@ class Header extends React.Component {
 
   render() {
     const { pathname } = this.props.location || { pathname: '/' };
+    const { loggedIn } = this.props;
 
     return (
       <nav className="navbar navbar-collapse navbar-default" id="navbarNav">
         <div className="container">
           <a onClick={() => browserHistory.push(`/`)} className="navbar-brand">
-            {' '}
-            {BRANDING_HEADER_TITLE}
+            Lykademens Intra
           </a>
+          {loggedIn && (
             <ul className="nav navbar-nav nav-pills">
               <li className={`nav-item ${pathname === "/" ? 'active' : ''}`}>
                 <a onClick={() => browserHistory.push(`/`)}> Hem </a>
@@ -37,6 +38,7 @@ class Header extends React.Component {
                 <a onClick={() => browserHistory.push(`/admin/points`)}> Kvartettkonto </a>
               </li>
             </ul>
+          )}
 
           {this.props.loggedIn ? (
             <a
