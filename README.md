@@ -9,12 +9,12 @@
 
 ```
 
-Current development is being held on `xxx` branch.
+Current development is being held on `develop` branch.
 
 
 # Trygve
 
-Trygve is Trygve.
+Trygve is Trygve. Visit the site on https://trygve.herokuapp.com
 
 ## Requirements
 
@@ -28,7 +28,7 @@ Trygve is Trygve.
 2. Start the mysql service with `brew services start mysql`
 3. Open the mysql terminal with `mysql -u root`
 4. In the mysql terminal, create a new user e.g. `CREATE USER 'juuso'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';`
-5. Fix permissions (this is probably too permissive, but it works): `GRANT ALL PRIVILEGES ON *.* TO 'sampo'@'localhost' WITH GRANT OPTION;`
+5. Fix permissions (this is probably too permissive, but it works): `GRANT ALL PRIVILEGES ON *.* TO 'juuso'@'localhost' WITH GRANT OPTION;`
 6. Type `exit` to exit the mysql terminal, and sign in with your new user e.g. `mysql -u juuso -p password`
 7. Create the `ilmomasiina` database with `CREATE DATABASE ilmomasiina;`
 
@@ -37,7 +37,7 @@ Trygve is Trygve.
 2. Service should start automatically
 3. Same as with Mac, but use `sudo mysql -u root`
 4. Follow Mac instructions
-5. Fix permissions (this is probably too permissive, but it works): `GRANT ALL PRIVILEGES ON *.* TO 'sampo'@'localhost' WITH GRANT OPTION;`
+5. Fix permissions (this is probably too permissive, but it works): `GRANT ALL PRIVILEGES ON *.* TO 'juuso'@'localhost' WITH GRANT OPTION;`
 6. Exit with `exit` and sign in with your new user e. g. `mysql -u juuso -p` (don't use `mysql -u juuso -p password`)
 7. Follow Mac instructions step 6
 
@@ -106,12 +106,7 @@ With some hosting providers (such as Otax) you might need to request the access 
 Running production version within pm2 is recommended
 
 ## Updating production
-
-```
-git pull otax/master
-npm run compile
-pm2 restart prod-server
-```
+The develop branch is automatically updated to heroku.
 
 ## Documentation
 
