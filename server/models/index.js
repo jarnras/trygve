@@ -1,3 +1,7 @@
+// This builds the Sequelize version of the database, i.e. connects to the
+// database and tables and associates the models (tables) with each other where
+// needed (i.e. defines connections with foreign keys etc.).
+
 const Sequelize = require('sequelize');
 
 const event = require('./event');
@@ -83,6 +87,11 @@ module.exports = function () {
   models.question.hasMany(models.answer, {
     foreignKey: 'questionId',
     onDelete: 'CASCADE',
+  });
+
+  models.user.hasMany(models.signup, {
+    foreignKey: 'userId',
+    onDelete: 'RESTRICT',  // don't delete signups if user is deleted
   });
 
   app.set('models', models);
