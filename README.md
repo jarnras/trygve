@@ -69,7 +69,7 @@ ADMIN_REGISTRATION_ALLOWED=true
 Create new user with POST request.
 
 ```
-curl 'http://localhost:3000/api/users' -H 'Content-Type: application/json' --data-binary '{ "email": "ville@athene.fi", "password": "password" }'
+curl 'http://localhost:3000/api/users' -H 'Content-Type: application/json' --data-binary '{ "email": "admin", "password": "admin" }'
 ```
 
 **Important**: Disallow admin user creation by removing the line.
