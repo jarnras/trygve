@@ -1,0 +1,8 @@
+{
+  "addons": ["jawsdb:kitefin"],
+  "environments": {
+    "review": {
+      "addons": ["jawsdb:kitefin"],
+    }
+  }
+}
