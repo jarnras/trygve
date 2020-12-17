@@ -27,18 +27,18 @@ Trygve is Trygve. Visit the site on https://trygve.herokuapp.com
 1. Install `mysql` (8.x) with Homebrew (https://gist.github.com/nrollr/3f57fc15ded7dddddcc4e82fe137b58e)
 2. Start the mysql service with `brew services start mysql`
 3. Open the mysql terminal with `mysql -u root`
-4. In the mysql terminal, create a new user e.g. `CREATE USER 'juuso'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';`
-5. Fix permissions (this is probably too permissive, but it works): `GRANT ALL PRIVILEGES ON *.* TO 'juuso'@'localhost' WITH GRANT OPTION;`
-6. Type `exit` to exit the mysql terminal, and sign in with your new user e.g. `mysql -u juuso -p password`
-7. Create the `ilmomasiina` database with `CREATE DATABASE ilmomasiina;`
+4. In the mysql terminal, create a new user e.g. `CREATE USER 'sissijuuso'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';`
+5. Fix permissions (this is probably too permissive, but it works): `GRANT ALL PRIVILEGES ON *.* TO 'sissijuuso'@'localhost' WITH GRANT OPTION;`
+6. Type `exit` to exit the mysql terminal, and sign in with your new user e.g. `mysql -u sissijuuso -p password`
+7. Create the `trygve` database with `CREATE DATABASE trygve;`
 
 ### Ubuntu
 1. Install mysql with `sudo apt install mysql-server`
 2. Service should start automatically
 3. Same as with Mac, but use `sudo mysql -u root`
 4. Follow Mac instructions
-5. Fix permissions (this is probably too permissive, but it works): `GRANT ALL PRIVILEGES ON *.* TO 'juuso'@'localhost' WITH GRANT OPTION;`
-6. Exit with `exit` and sign in with your new user e. g. `mysql -u juuso -p` (don't use `mysql -u juuso -p password`)
+5. Fix permissions (this is probably too permissive, but it works): `GRANT ALL PRIVILEGES ON *.* TO 'sissijuuso'@'localhost' WITH GRANT OPTION;`
+6. Exit with `exit` and sign in with your new user e. g. `mysql -u sissijuuso -p` (don't use `mysql -u sissijuuso -p password`)
 7. Follow Mac instructions step 6
 
 ## Getting started
@@ -78,7 +78,7 @@ By default, only logged in admin users can create new admin users (via `/admin`)
 
 ## Production
 
-**Important**: Ilmomasiina is currently on alpha stage. Use it with your own risk.
+**Important**: Trygve is currently on alpha stage. Use it at your own risk.
 
 Example of `.htaccess` config:
 
