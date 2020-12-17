@@ -9,13 +9,13 @@ const { authenticate } = require('@feathersjs/authentication');
 let createHook;
 
 if (config.adminRegistrationAllowed) {
-  createHook = [validateRegistration(), createPassword(), hashPassword('password')];
+  createHook = [validateRegistration(), hashPassword('password')];
 } else {
-  createHook = [authenticate('jwt'), createPassword(), hashPassword('password')];
+  createHook = [createPassword(), hashPassword('password')];
 }
 
 exports.before = {
-  all: [authenticate('jwt')],
+  all: config.adminRegistrationAllowed ? [] : [authenticate('jwt')],
   find: [],
   get: [],
   create: createHook,
