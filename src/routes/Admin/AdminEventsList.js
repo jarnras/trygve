@@ -39,11 +39,11 @@ class AdminEventList extends React.Component {
   }
 
   onDeleteEvent(eventId) {
-    if (window.confirm('Haluatko varmasti poistaa tämän tapahtuman? Tätä toimintoa ei voi perua.')) {
+    if (window.confirm('är du säker att du vill ta bort evenemanget permanent?')) {
       this.props.deleteEvent(eventId)
         .then((success) => {
           if (!success) {
-            console.alert('Poisto epäonnistui :(');
+            console.alert('Evenemanget raderat :(');
           }
           this.props.updateEvents();
         });
@@ -91,14 +91,14 @@ class AdminEventList extends React.Component {
   render() {
     return (
       <div className="container">
-        <h1>Hallinta</h1>
+        <h1>Adminsidan</h1>
         <table className="table">
           <thead>
             <tr>
-              <th>Nimi</th>
-              <th>Ajankohta</th>
-              <th>Tila</th>
-              <th>Ilmoittautuneita</th>
+              <th>Namn</th>
+              <th>Tidpunk</th>
+              <th>Plats</th>
+              <th>Anmälda</th>
               <th>Toiminnot</th>
             </tr>
           </thead>
@@ -107,11 +107,11 @@ class AdminEventList extends React.Component {
           </tbody>
         </table>
         <Link to={`${PREFIX_URL}/admin/edit/new`} className="btn btn-default">
-          + Uusi tapahtuma
+          + Nytt evenemang
         </Link>
         <div>
           <Link to={`${PREFIX_URL}/admin/users`} className="btn btn-default">
-            Käyttäjien hallintapaneeli
+            Användarsäätö
         </Link>
         </div>
 

@@ -50,7 +50,7 @@ class TableRow extends React.Component {
         <td
           key="signups"
           className="signups"
-          data-xs-prefix={signups || size ? 'Ilmoittautuneita: ' : ''}
+          data-xs-prefix={signups || size ? 'Anmälda: ' : ''}
         >
           {signups}
           {size ? <Separator /> : ''}
@@ -157,14 +157,14 @@ class EventList extends React.Component {
 
     return (
       <div className="container">
-        <h1>Tapahtumat</h1>
+        <h1>Evenemang</h1>
         <table className="table eventlist">
           <thead>
             <tr>
-              <th>Nimi</th>
-              <th>Ajankohta</th>
-              <th>Ilmoittautuminen</th>
-              <th>Ilmoittautuneita</th>
+              <th>Namn</th>
+              <th>Tidpunkt</th>
+              <th>Anmälning</th>
+              <th>Anmälda</th>
             </tr>
           </thead>
           <tbody>{tableRows}</tbody>
