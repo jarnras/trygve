@@ -1,8 +1,12 @@
 const debug = require('debug')('app:script');
 const feathers = require('@feathersjs/feathers');
+const express = require('@feathersjs/express');
 const _ = require('lodash');
 const moment = require('moment');
 const faker = require('faker');
+const { AuthenticationService } = require('@feathersjs/authentication');
+const { LocalStrategy } = require('@feathersjs/authentication-local');
+const config = require('../config/ilmomasiina.config.js');
 
 const models = require('../server/models');
 
@@ -185,6 +189,13 @@ const signups = [];
 
 const answers = [];
 
+const users = [
+  {
+    email: 'admin',
+    password: 'admin',
+  },
+];
+
 let signupIndex = 0;
 
 faker.locale = 'en';
@@ -224,26 +235,40 @@ quotas.map((quota, quotaIndex) => {
   return true;
 });
 
+
 for (let i = 0; i < quotas.length; i += 1) {
   delete quotas[i].going;
 }
-
 const app = express(feathers());
 app.configure(models);
 
-const seq = app.get('sequelize');
+const authService = new AuthenticationService(app);
+app.set('authentication', config.authenticationConfig);
+const localStrategy = new LocalStrategy();
+authService.register('local', localStrategy);
 
-// Drop tables and create them
-seq
-  .sync({ force: true })
-  .then(() => seq.models.event.bulkCreate(events))
-  .then(() => seq.models.quota.bulkCreate(quotas))
-  .then(() => seq.models.question.bulkCreate(questions))
-  .then(() => debug(`${events.length} events with ${quotas.length} quotas and ${questions.length} questions created.`))
-  .then(() => seq.models.signup.bulkCreate(signups))
-  .then(() => seq.models.answer.bulkCreate(answers))
-  .then(() => debug(`${signups.length} signups with ${answers.length} answers added.`))
-  .then(() => seq.close())
-  .then(() => debug('Creating fake data finished.'));
 
-module.exports = app;
+Promise.all(users.map(async (user) => {
+
+  return {
+    email: user.email,
+    password: await localStrategy.hashPassword(user.password),
+  };
+})).then((hashedUsers) => {
+  const seq = app.get('sequelize');
+
+  // Drop tables and create them
+  seq
+    .sync()
+    .then(() => seq.models.event.bulkCreate(events))
+    .then(() => seq.models.quota.bulkCreate(quotas))
+    .then(() => seq.models.question.bulkCreate(questions))
+    .then(() => debug(`${events.length} events with ${quotas.length} quotas and ${questions.length} questions created.`))
+    .then(() => seq.models.signup.bulkCreate(signups))
+    .then(() => seq.models.answer.bulkCreate(answers))
+    .then(() => seq.models.user.bulkCreate(hashedUsers))
+    .then(() => debug(`${signups.length} signups with ${answers.length} answers added.`))
+    .then(() => seq.close())
+    .then(() => debug('Creating fake data finished.'));
+    module.exports = app;
+});
