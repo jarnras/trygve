@@ -27,8 +27,7 @@
     "reset-db": "better-npm-run reset-db",
     "create-fake-data": "better-npm-run create-fake-data",
     "create-user": "better-npm-run create-user",
-    "test-email": "better-npm-run test-email",
-    "postdeploy": "npm run create-fake-data"
+    "test-email": "better-npm-run test-email"
   },
   "betterScripts": {
     "compile": {
@@ -187,7 +186,6 @@
     "then-request": "^2.2.0",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.14",
-    "faker": "^3.1.0",
     "yargs": "^6.3.0"
   },
   "devDependencies": {
@@ -210,6 +208,7 @@
     "eslint-plugin-react": "^6.0.0",
     "eslint-plugin-standard": "^2.0.0",
     "node-sass": "^4.14.1",
+    "faker": "^3.1.0",
     "nodemon": "^1.18.10",
     "pm2": "^3.3.1",
     "react-addons-test-utils": "^15.0.0",

@@ -1,6 +1,5 @@
 const debug = require('debug')('app:script');
 const feathers = require('@feathersjs/feathers');
-const express = require('@feathersjs/express');
 const _ = require('lodash');
 const moment = require('moment');
 const faker = require('faker');
@@ -74,9 +73,6 @@ const app = express(feathers());
 app.configure(models);
 
 const seq = app.get('sequelize');
-
-seq.models.users
-  .bulkCreate
 
 // Drop tables and create them
 seq.models.event

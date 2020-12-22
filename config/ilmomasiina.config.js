@@ -14,32 +14,10 @@ const config = {
   baseUrl: process.env.BASE_URL,
   prefixUrl: process.env.PREFIX_URL || '',
   adminRegistrationAllowed:
-  process.env.ADMIN_REGISTRATION_ALLOWED === 'true' || false,
+    process.env.ADMIN_REGISTRATION_ALLOWED == 'true' || false,
   brandingMailFooterText: process.env.BRANDING_MAIL_FOOTER_TEXT,
   brandingMailFooterLink: `${process.env.BASE_URL}${process.env.PREFIX_URL ||
     ''}`,
-  authenticationConfig: {
-    secret: process.env.FEATHERS_AUTH_SECRET,
-    path: 'api/authentication',
-    service: 'api/users',
-    entity: 'user',
-    authStrategies: [
-      'local',
-      'jwt',
-    ],
-    jwtOptions: {
-      header: { typ: 'access' },
-      audience: 'http://localhost:3000',
-      issuer: 'feathers',
-      algorithm: 'HS256',
-      expiresIn: '1d',
-    },
-    local: {
-      entity: 'user',
-      usernameField: 'email',
-      passwordField: 'password',
-    },
-  },
 };
 
 _.forOwn(config, (value, key) => {

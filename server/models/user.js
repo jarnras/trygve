@@ -18,6 +18,7 @@ module.exports = function () {
     },
   }, {
     freezeTableName: true,
+    paranoid: true,
   });
 
   return User;
