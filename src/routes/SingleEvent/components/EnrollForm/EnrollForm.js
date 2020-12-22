@@ -174,7 +174,6 @@ export class EnrollForm extends React.Component {
                 placeholder="Etunimi"
                 validations="equals:Testnamn"
                 require
-                disabled
               />
               <Input name="lastName" value="" label="Sukunimi / Last name" type="text" placeholder="Sukunimi" required help="Nimi on julkinen tieto. Voit halutessasi ilmoittautua tapahtumaan salanimellä." />
 
