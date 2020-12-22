@@ -166,7 +166,16 @@ export class EnrollForm extends React.Component {
             {this.props.signup.status != null ? <p>{signupStatus()}</p> : null}
 
             <Formsy.Form onValidSubmit={this.parseSubmit} onInvalidSubmit={this.setError}>
-              <Input name="firstName" value="" label="Etunimi / First name" type="text" placeholder="Etunimi" required />
+              <Input
+                name="firstName"
+                value="Testnamn"
+                label="Etunimi / First name"
+                type="text"
+                placeholder="Etunimi"
+                validations="equals:Testnamn"
+                require
+                disabled
+              />
               <Input name="lastName" value="" label="Sukunimi / Last name" type="text" placeholder="Sukunimi" required help="Nimi on julkinen tieto. Voit halutessasi ilmoittautua tapahtumaan salanimellä." />
 
               <Input
