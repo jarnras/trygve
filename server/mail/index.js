@@ -4,24 +4,30 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
-  host: ilmoconfig.mailSmtpServer,
-  port: ilmoconfig.mailSmtpPort,
-  secure: true, // use TLS
+  // host: 'smtp.gmail.com',
+  // port: 465,
+  service: 'Gmail',
+  // secure: false,
+  // requireTLS: true,
   auth: {
     user: ilmoconfig.mailSmtpUser,
     pass: ilmoconfig.mailSmtpPassword,
   },
+  logger: true,
+  // debug: true,
 });
+
+
+console.log('ilmoconfig.mailSmtpUser: ' + ilmoconfig.mailSmtpUser)
 
 const EmailService = {
   send: (to, subject, html) => {
     const msg = {
       to,
-      from: ilmoconfig.mailFrom,
+      from: 'skicka@akademen.com',
       subject,
       html,
     };
-
     return transporter.sendMail(msg);
   },
 
