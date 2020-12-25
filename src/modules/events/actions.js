@@ -26,7 +26,7 @@ export const getEventsAsync = () => (dispatch, getState) => {
   request('GET', `${PREFIX_URL}/api/events`, {
     headers: { Authorization: accessToken },
   })
-    .then(res => JSON.parse(res.body))
+    .then(res => JSON.parse(res.getBody()))
     .then((res) => {
       dispatch(setEvents(res));
     })

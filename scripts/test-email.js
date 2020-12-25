@@ -1,3 +1,10 @@
 const EmailService = require('../server/mail/');
 
-EmailService.send();
+const msg = {
+  to: 'rasmusjarnstrom@gmail.com',
+  from: '<intra@akademen.com>',
+  subject: 'Test',
+  html: 'test',
+};
+
+EmailService.send(msg);

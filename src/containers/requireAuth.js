@@ -11,7 +11,7 @@ function requireAuth(WrappedComponent) {
       redirectToLogin: PropTypes.func.isRequired,
     };
 
-    componentDidMount() {
+    render() {
       let { accessTokenExpires } = this.props;
       if (!accessTokenExpires) {
         this.props.redirectToLogin();
@@ -22,9 +22,6 @@ function requireAuth(WrappedComponent) {
       if (accessTokenExpires < new Date()) {
         this.props.redirectToLogin();
       }
-    }
-    render() {
-      console.log('TOKEN', this.props.accessToken);
       if (!this.props.accessToken) {
         this.props.redirectToLogin();
         return null;
